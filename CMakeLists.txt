@@ -74,6 +74,10 @@ else()
     message(STATUS "Found xtensor: ${xtensor_INCLUDE_DIRS}/xtensor")
 endif()
 
+# -- get CGAL
+# TODO: make it optional
+find_package(CGAL REQUIRED)
+
 # Installation directories
 # ========================
 
@@ -112,6 +116,7 @@ set(FASTSCAPELIB_HEADERS
   ${FASTSCAPELIB_INCLUDE_DIR}/fastscapelib/grid/base.hpp
   ${FASTSCAPELIB_INCLUDE_DIR}/fastscapelib/grid/profile_grid.hpp
   ${FASTSCAPELIB_INCLUDE_DIR}/fastscapelib/grid/raster_grid.hpp
+  ${FASTSCAPELIB_INCLUDE_DIR}/fastscapelib/grid/spherical_trimesh.hpp
   ${FASTSCAPELIB_INCLUDE_DIR}/fastscapelib/grid/structured_grid.hpp
   ${FASTSCAPELIB_INCLUDE_DIR}/fastscapelib/grid/trimesh.hpp
   # Utils
@@ -134,7 +139,7 @@ target_include_directories(${FASTSCAPELIB_TARGET}
     $<INSTALL_INTERFACE:include>
 )
 
-target_link_libraries(${FASTSCAPELIB_TARGET} INTERFACE xtensor)
+target_link_libraries(${FASTSCAPELIB_TARGET} INTERFACE xtensor CGAL::CGAL)
 
 target_compile_features(${FASTSCAPELIB_TARGET} INTERFACE cxx_std_17)
 

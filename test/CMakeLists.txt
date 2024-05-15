@@ -81,6 +81,7 @@ set(FASTSCAPELIB_TEST_SRC
     test_raster_bishop_grid.cpp
     test_structured_grid.cpp
     test_sink_resolver.cpp
+    test_spherical_trimesh.cpp
     test_spl.cpp
     test_trimesh.cpp
 )
