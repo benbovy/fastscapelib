@@ -34,6 +34,9 @@ endif()
 
 include(GoogleTest)
 
+# disable CGAL configuration warning when building in debug mode
+set(CGAL_DO_NOT_WARN_ABOUT_CMAKE_BUILD_TYPE true PARENT_SCOPE)
+
 # Compiler configuration
 # ======================
 

@@ -69,6 +69,8 @@ namespace fastscapelib
         static spherical_trimesh_xt from_icosphere(unsigned int n_subdivisions,
                                                    double radius = earth_radius);
 
+        const cgal_mesh_type& cgal_mesh() const;
+
     protected:
         std::unique_ptr<cgal_mesh_type> m_cgal_mesh_ptr;
 
@@ -114,7 +116,7 @@ namespace fastscapelib
      * Creates a new triangular mesh on the sphere from an icosphere.
      *
      * The vertices of the new mesh are quasi-uniformly distributed on the sphere.
-     * This works by first creating an isosahedron, then subdividing each of its
+     * This works by first creating an icosahedron, then subdividing each of its
      * triangular faces into a set of smaller triangles and finally project the
      * vertices on the sphere.
      *
@@ -140,9 +142,17 @@ namespace fastscapelib
             points.emplace_back(temp_mesh.point(v));
         }
 
+        std::cout << points.size() << std::endl;
+
         return spherical_trimesh_xt<S>(points.begin(), points.end(), radius);
     }
     //@}
+
+    template <class S>
+    auto spherical_trimesh_xt<S>::cgal_mesh() const -> const cgal_mesh_type&
+    {
+        return *m_cgal_mesh_ptr;
+    }
 }
 
 #endif  // FASTSCAPELIB_GRID_SPHERICAL_TRIMESH_H_

@@ -14,7 +14,9 @@ namespace fastscapelib
 
         TEST(spherical_trimesh, from_icosphere)
         {
-            grid_type smesh = grid_type::from_icosphere(4);
+            grid_type smesh = grid_type::from_icosphere(8);
+            ASSERT_TRUE(false);
+            // std::cout << smesh.cgal_mesh().number_of_vertices() << std::endl;
         }
 
     }
